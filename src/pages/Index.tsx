@@ -95,10 +95,7 @@ const Index = () => {
           >
             <source src="/videos/hero-bg.mp4" type="video/mp4" />
           </video>
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-background/70" />
         </div>
-
         <div className="container-wide relative z-10 py-20 md:py-32">
           <div className="max-w-4xl">
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] mb-6 md:mb-8 animate-fade-up">
