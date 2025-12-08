@@ -23,7 +23,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     <AnimatePresence>
       {phase < 4 && (
         <motion.div
-          className="fixed inset-0 z-[100] bg-foreground flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-background flex items-center justify-center"
           exit={{ opacity: 0 }}
           transition={{ duration: 0.4 }}
         >
@@ -32,7 +32,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {[...Array(5)].map((_, i) => (
               <motion.div
                 key={i}
-                className="absolute h-px w-full bg-background"
+                className="absolute h-px w-full bg-foreground"
                 style={{ top: `${20 + i * 15}%` }}
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: phase >= 1 ? 1 : 0 }}
@@ -50,7 +50,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {/* Logo reveal with clip mask */}
             <div className="overflow-hidden">
               <motion.h1
-                className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-background tracking-tighter"
+                className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-foreground tracking-tighter"
                 initial={{ y: "100%" }}
                 animate={{ y: phase >= 1 ? "0%" : "100%" }}
                 transition={{
@@ -64,7 +64,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
             {/* Underline */}
             <motion.div
-              className="h-[2px] bg-background mt-6"
+              className="h-[2px] bg-foreground mt-6"
               initial={{ width: 0 }}
               animate={{ width: phase >= 2 ? 120 : 0 }}
               transition={{
@@ -76,7 +76,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             {/* Tagline */}
             <div className="overflow-hidden mt-6">
               <motion.p
-                className="text-background/60 text-sm tracking-[0.4em] uppercase"
+                className="text-muted-foreground text-sm tracking-[0.4em] uppercase"
                 initial={{ y: "100%", opacity: 0 }}
                 animate={{
                   y: phase >= 2 ? "0%" : "100%",
@@ -96,7 +96,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
           {/* Reveal wipe */}
           {phase >= 3 && (
             <motion.div
-              className="absolute inset-0 bg-background z-10"
+              className="absolute inset-0 bg-foreground z-10"
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               style={{ transformOrigin: "bottom" }}

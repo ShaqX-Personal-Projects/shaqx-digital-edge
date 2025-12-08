@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const navLinks = [
   { name: "Services", href: "/services" },
@@ -46,7 +47,8 @@ export function Navbar() {
           </div>
 
           {/* Desktop CTA */}
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
             <Button asChild variant="hero" size="sm">
               <Link to="/kontakt">Book et møde</Link>
             </Button>
