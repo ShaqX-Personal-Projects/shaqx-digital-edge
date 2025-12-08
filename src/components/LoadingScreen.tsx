@@ -10,11 +10,11 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 
   useEffect(() => {
     const timers = [
-      setTimeout(() => setPhase(1), 100),
-      setTimeout(() => setPhase(2), 800),
-      setTimeout(() => setPhase(3), 1500),
-      setTimeout(() => setPhase(4), 2300),
-      setTimeout(() => onComplete(), 2800),
+      setTimeout(() => setPhase(1), 150),
+      setTimeout(() => setPhase(2), 900),
+      setTimeout(() => setPhase(3), 1700),
+      setTimeout(() => setPhase(4), 2500),
+      setTimeout(() => onComplete(), 3000),
     ];
     return () => timers.forEach(clearTimeout);
   }, [onComplete]);
@@ -41,9 +41,9 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                   transformOrigin: i % 2 === 0 ? "top" : "bottom",
                 }}
                 transition={{
-                  duration: 0.5,
-                  delay: i * 0.08,
-                  ease: [0.76, 0, 0.24, 1],
+                  duration: 0.7,
+                  delay: i * 0.06,
+                  ease: [0.65, 0, 0.35, 1],
                 }}
               />
             ))}
@@ -59,8 +59,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                   initial={{ y: "110%" }}
                   animate={{ y: phase >= 1 ? "0%" : "110%" }}
                   transition={{
-                    duration: 0.7,
-                    ease: [0.76, 0, 0.24, 1],
+                    duration: 0.9,
+                    ease: [0.33, 1, 0.68, 1],
                   }}
                 >
                   SHAQX
@@ -74,8 +74,8 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                   initial={{ y: "110%" }}
                   animate={{ y: phase >= 2 ? "0%" : "110%" }}
                   transition={{
-                    duration: 0.5,
-                    ease: [0.76, 0, 0.24, 1],
+                    duration: 0.7,
+                    ease: [0.33, 1, 0.68, 1],
                   }}
                 >
                   Digital Bureau
