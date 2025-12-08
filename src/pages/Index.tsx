@@ -1,10 +1,11 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
 import { ServiceCard } from "@/components/ServiceCard";
 import { CaseCard } from "@/components/CaseCard";
-
+import LoadingScreen from "@/components/LoadingScreen";
 const services = [
   {
     title: "Softwareudvikling",
@@ -75,8 +76,12 @@ const cases = [
 ];
 
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
-    <Layout>
+    <>
+      {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
+      <Layout>
       {/* Hero Section */}
       <section className="section-padding bg-background">
         <div className="container-wide">
@@ -251,7 +256,8 @@ const Index = () => {
           </Button>
         </div>
       </section>
-    </Layout>
+      </Layout>
+    </>
   );
 };
 
