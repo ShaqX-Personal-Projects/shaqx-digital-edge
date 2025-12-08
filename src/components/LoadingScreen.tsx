@@ -23,9 +23,16 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     <AnimatePresence>
       {phase < 4 && (
         <motion.div
-          className="fixed inset-0 z-[100] bg-background flex items-center justify-center"
+          className="fixed inset-0 z-[100] bg-background flex items-center justify-center origin-center"
+          animate={{ 
+            rotate: phase >= 3 ? 720 : 0,
+            scale: phase >= 3 ? 0 : 1,
+          }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
+          transition={{ 
+            duration: 0.8,
+            ease: [0.76, 0, 0.24, 1],
+          }}
         >
           {/* Subtle animated lines in background */}
           <div className="absolute inset-0 overflow-hidden opacity-10">
@@ -93,20 +100,6 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             </div>
           </div>
 
-          {/* Reveal wipe */}
-          {phase >= 3 && (
-            <motion.div
-              className="absolute inset-0 bg-foreground z-10"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              style={{ transformOrigin: "bottom" }}
-              transition={{
-                duration: 0.6,
-                delay: 0.3,
-                ease: [0.76, 0, 0.24, 1],
-              }}
-            />
-          )}
         </motion.div>
       )}
     </AnimatePresence>
