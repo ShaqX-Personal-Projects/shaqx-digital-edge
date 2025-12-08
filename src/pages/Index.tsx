@@ -83,15 +83,30 @@ const Index = () => {
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
       <Layout>
       {/* Hero Section */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
+      <section className="relative min-h-screen flex items-center overflow-hidden">
+        {/* Video Background */}
+        <div className="absolute inset-0 z-0">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          </video>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-background/70" />
+        </div>
+
+        <div className="container-wide relative z-10 py-20 md:py-32">
           <div className="max-w-4xl">
-            <h1 className="font-display text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] mb-8 animate-fade-up">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.05] mb-6 md:mb-8 animate-fade-up">
               Digitale løsninger<br />
               der skaffer<br />
               <span className="text-muted-foreground">resultater</span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mb-10 animate-fade-up delay-100">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mb-8 md:mb-10 animate-fade-up delay-100">
               Vi bygger software, websites og webshops. Optimerer din SEO. 
               Giver ærlig rådgivning. Og sørger for at tingene rent faktisk virker.
             </p>
