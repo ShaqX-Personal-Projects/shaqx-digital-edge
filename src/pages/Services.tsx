@@ -1,7 +1,9 @@
+import { useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Code, Globe, Search, MessageSquare, Settings, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
+import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 const services = [
   {
@@ -108,113 +110,258 @@ const services = [
   },
 ];
 
+// Animated text component
+const AnimatedText = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 80, skewY: 3 }}
+      animate={isInView ? { opacity: 1, y: 0, skewY: 0 } : { opacity: 0, y: 80, skewY: 3 }}
+      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// Service item with advanced animation
+const ServiceItem = ({ service, index }: { service: typeof services[0]; index: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const Icon = service.icon;
+  
+  return (
+    <motion.article
+      ref={ref}
+      id={service.id}
+      initial={{ opacity: 0, y: 100 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+      transition={{ duration: 0.9, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="py-16 md:py-24 border-t border-border scroll-mt-24 group"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        {/* Left Column */}
+        <div className="lg:col-span-5">
+          <motion.div 
+            className="flex items-center gap-4 mb-6"
+            initial={{ opacity: 0, x: -40 }}
+            animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -40 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <motion.div 
+              className="w-14 h-14 border border-border flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors duration-300"
+              whileHover={{ rotate: 5 }}
+            >
+              <Icon size={24} />
+            </motion.div>
+            <motion.span 
+              className="text-6xl font-display font-bold text-muted-foreground/20"
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              0{index + 1}
+            </motion.span>
+          </motion.div>
+          <motion.h2 
+            className="font-display text-2xl md:text-3xl lg:text-4xl font-bold mb-4"
+            initial={{ opacity: 0, y: 40 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            {service.title}
+          </motion.h2>
+          <motion.p 
+            className="text-muted-foreground leading-relaxed text-lg"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            {service.intro}
+          </motion.p>
+        </div>
+
+        {/* Right Column */}
+        <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-10">
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+          >
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-6">
+              Hvad du får
+            </h3>
+            <ul className="space-y-4">
+              {service.whatYouGet.map((item, i) => (
+                <motion.li 
+                  key={i} 
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, delay: 0.5 + i * 0.1 }}
+                >
+                  <motion.span 
+                    className="w-2 h-2 bg-foreground rounded-full mt-2 flex-shrink-0"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.3, delay: 0.6 + i * 0.1 }}
+                  />
+                  <span>{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 60 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+          >
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-6">
+              Hvem det er til
+            </h3>
+            <ul className="space-y-4">
+              {service.whoItsFor.map((item, i) => (
+                <motion.li 
+                  key={i} 
+                  className="flex items-start gap-3"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                  transition={{ duration: 0.4, delay: 0.6 + i * 0.1 }}
+                >
+                  <motion.span 
+                    className="w-2 h-2 bg-muted-foreground rounded-full mt-2 flex-shrink-0"
+                    initial={{ scale: 0 }}
+                    animate={isInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.3, delay: 0.7 + i * 0.1 }}
+                  />
+                  <span className="text-muted-foreground">{item}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </div>
+      </div>
+    </motion.article>
+  );
+};
+
 const Services = () => {
+  const heroRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const heroY = useTransform(scrollYProgress, [0, 1], [0, 100]);
+
   return (
     <Layout>
-      {/* Hero */}
-      <section className="section-padding bg-background">
-        <div className="container-wide">
-          <div className="max-w-3xl">
-            <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 block animate-fade-up">
-              Vores services
-            </span>
-            <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold mb-6 animate-fade-up delay-100">
-              Alt hvad du har brug for. Intet du ikke har.
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground animate-fade-up delay-200">
+      {/* Hero - Split Design */}
+      <section ref={heroRef} className="min-h-[60vh] bg-background relative overflow-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[60vh]">
+          {/* Left Column - Dark */}
+          <motion.div 
+            className="lg:col-span-5 bg-foreground text-background p-8 md:p-12 lg:p-16 flex flex-col justify-center relative overflow-hidden"
+            initial={{ x: "-100%" }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.div
+              className="absolute inset-0 opacity-[0.03]"
+              style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '30px 30px' }}
+            />
+            <div className="relative z-10">
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-xs font-semibold uppercase tracking-wider text-background/50 block mb-4"
+              >
+                Vores services
+              </motion.span>
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.5 }}
+                className="font-display text-5xl md:text-6xl lg:text-7xl font-bold leading-[0.95]"
+              >
+                <span className="text-background/40">6</span><br />
+                services
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Right Column */}
+          <motion.div 
+            className="lg:col-span-7 p-8 md:p-12 lg:p-16 flex flex-col justify-center"
+            style={{ y: heroY }}
+          >
+            <div className="overflow-hidden">
+              <motion.h1
+                initial={{ y: "100%", rotateX: 45 }}
+                animate={{ y: 0, rotateX: 0 }}
+                transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+              >
+                Alt hvad du har brug for.<br />
+                <span className="text-muted-foreground">Intet du ikke har.</span>
+              </motion.h1>
+            </div>
+            <motion.p
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-lg text-muted-foreground max-w-lg"
+            >
               Vi tilbyder en fokuseret palette af services der dækker hele din digitale rejse – 
               fra strategi og udvikling til drift og optimering.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
       </section>
 
       {/* Services List */}
-      <section className="pb-20 md:pb-28 lg:pb-36">
+      <section className="pb-20 md:pb-28 lg:pb-36 bg-background">
         <div className="container-wide">
-          <div className="space-y-0">
-            {services.map((service, index) => (
-              <article 
-                key={service.id} 
-                id={service.id}
-                className="py-16 md:py-20 border-t border-border scroll-mt-24 animate-fade-up"
-                style={{ animationDelay: `${index * 50}ms` }}
-              >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
-                  {/* Left Column */}
-                  <div className="lg:col-span-5">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="w-12 h-12 border border-border flex items-center justify-center">
-                        <service.icon size={22} />
-                      </div>
-                      <span className="text-xs font-medium text-muted-foreground">
-                        0{index + 1}
-                      </span>
-                    </div>
-                    <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">
-                      {service.title}
-                    </h2>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {service.intro}
-                    </p>
-                  </div>
-
-                  {/* Right Column */}
-                  <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-10">
-                    <div>
-                      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-                        Hvad du får
-                      </h3>
-                      <ul className="space-y-3">
-                        {service.whatYouGet.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 bg-foreground rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-sm">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4">
-                        Hvem det er til
-                      </h3>
-                      <ul className="space-y-3">
-                        {service.whoItsFor.map((item, i) => (
-                          <li key={i} className="flex items-start gap-3">
-                            <span className="w-1.5 h-1.5 bg-foreground rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-sm text-muted-foreground">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+          {services.map((service, index) => (
+            <ServiceItem key={service.id} service={service} index={index} />
+          ))}
         </div>
       </section>
 
       {/* CTA */}
-      <section className="section-padding bg-foreground text-background">
-        <div className="container-wide text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-bold mb-6 max-w-2xl mx-auto">
-            Har du brug for hjælp til et projekt?
-          </h2>
-          <p className="text-lg text-background/70 mb-10 max-w-xl mx-auto">
-            Lad os tage en snak om dine udfordringer og muligheder.
-          </p>
-          <Button 
-            asChild 
-            variant="hero-outline" 
-            size="xl"
-            className="border-background text-background hover:bg-background hover:text-foreground"
-          >
-            <Link to="/kontakt">
-              Kontakt os
-              <ArrowRight size={18} />
-            </Link>
-          </Button>
+      <section className="section-padding bg-gradient-to-br from-foreground via-foreground to-foreground/90 text-background relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
+        <div className="container-wide text-center relative z-10">
+          <AnimatedText>
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold mb-6 max-w-2xl mx-auto">
+              Har du brug for hjælp<br />til et projekt?
+            </h2>
+          </AnimatedText>
+          <AnimatedText delay={0.1}>
+            <p className="text-lg text-background/70 mb-10 max-w-xl mx-auto">
+              Lad os tage en snak om dine udfordringer og muligheder.
+            </p>
+          </AnimatedText>
+          <AnimatedText delay={0.2}>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+              <Button 
+                asChild 
+                variant="outline" 
+                size="xl"
+                className="border-background text-background hover:bg-background hover:text-foreground"
+              >
+                <Link to="/kontakt">
+                  Kontakt os
+                  <ArrowRight size={18} />
+                </Link>
+              </Button>
+            </motion.div>
+          </AnimatedText>
         </div>
       </section>
     </Layout>
