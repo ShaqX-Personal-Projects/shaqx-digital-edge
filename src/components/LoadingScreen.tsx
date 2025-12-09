@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
+import { useTheme } from "@/hooks/use-theme";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -8,6 +9,8 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [phase, setPhase] = useState(0);
+  const { theme } = useTheme();
+  const isLightMode = theme === "light";
 
   useEffect(() => {
     const timers = [
@@ -58,12 +61,21 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 <motion.img
                   src={logoWhite}
                   alt="ShaqX"
-                  className="h-64 md:h-96 lg:h-[32rem] w-auto invert dark:invert-0"
+                  className="h-64 md:h-96 lg:h-[32rem] w-auto"
                   initial={{ y: "110%" }}
-                  animate={{ y: phase >= 1 ? "0%" : "110%" }}
+                  animate={{ 
+                    y: phase >= 1 ? "0%" : "110%",
+                    filter: isLightMode ? (phase >= 3 ? "invert(1)" : "invert(0)") : "invert(0)"
+                  }}
                   transition={{
-                    duration: 0.9,
-                    ease: [0.33, 1, 0.68, 1],
+                    y: {
+                      duration: 0.9,
+                      ease: [0.33, 1, 0.68, 1],
+                    },
+                    filter: {
+                      duration: 0.5,
+                      ease: "easeInOut"
+                    }
                   }}
                 />
               </div>
