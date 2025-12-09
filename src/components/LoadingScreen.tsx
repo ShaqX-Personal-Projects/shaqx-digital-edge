@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
+import logoWhite from "@/assets/logo-white.png";
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -54,17 +55,17 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
             <div className="relative flex flex-col items-center">
               {/* Logo */}
               <div className="overflow-hidden">
-                <motion.h1
-                  className="text-6xl md:text-8xl lg:text-9xl font-display font-bold text-background mix-blend-difference tracking-tighter"
+                <motion.img
+                  src={logoWhite}
+                  alt="ShaqX"
+                  className="h-20 md:h-32 lg:h-40 w-auto mix-blend-difference invert"
                   initial={{ y: "110%" }}
                   animate={{ y: phase >= 1 ? "0%" : "110%" }}
                   transition={{
                     duration: 0.9,
                     ease: [0.33, 1, 0.68, 1],
                   }}
-                >
-                  SHAQX
-                </motion.h1>
+                />
               </div>
 
               {/* Tagline */}
