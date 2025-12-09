@@ -77,9 +77,37 @@ export function Footer() {
           </div>
         </div>
 
+        {/* Contact Section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 pt-10 border-t border-background/10">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-background/60 mb-4">Salg</h3>
+            <a href="mailto:sales@shaqx.com" className="text-background/80 hover:text-background transition-colors">
+              sales@shaqx.com
+            </a>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-background/60 mb-4">Support</h3>
+            <a href="mailto:support@shaqx.com" className="text-background/80 hover:text-background transition-colors">
+              support@shaqx.com
+            </a>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-background/60 mb-4">Generelt</h3>
+            <a href="mailto:info@shaqx.com" className="text-background/80 hover:text-background transition-colors">
+              info@shaqx.com
+            </a>
+          </div>
+        </div>
+
         {/* Bottom Section */}
         <div className="pt-10 border-t border-background/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <img src={logoWhite} alt="ShaqX" className="h-24 w-auto" />
+          <div className="flex items-center gap-8">
+            <img src={logoWhite} alt="ShaqX" className="h-24 w-auto" />
+            <div className="text-sm text-background/60">
+              <p>Stolt bygget i Danmark</p>
+              <p>CVR: 45847136</p>
+            </div>
+          </div>
           <div className="text-sm text-background/60">
             © {new Date().getFullYear()} ShaqX. Alle rettigheder forbeholdes.
           </div>
