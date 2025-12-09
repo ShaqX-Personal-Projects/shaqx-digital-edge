@@ -58,7 +58,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                 <motion.img
                   src={logoWhite}
                   alt="ShaqX"
-                  className="h-20 md:h-32 lg:h-40 w-auto mix-blend-difference invert"
+                  className="h-20 md:h-32 lg:h-40 w-auto brightness-0 dark:brightness-100 mix-blend-difference"
                   initial={{ y: "110%" }}
                   animate={{ y: phase >= 1 ? "0%" : "110%" }}
                   transition={{
