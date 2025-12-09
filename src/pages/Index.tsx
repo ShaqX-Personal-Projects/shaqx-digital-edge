@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Layout } from "@/components/Layout";
 import LoadingScreen from "@/components/LoadingScreen";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import caseBjarne from "@/assets/case-bjarne.png";
 
 const services = [
   {
@@ -61,6 +62,7 @@ const cases = [
     resultLabel: "tilstedeværelse",
     description: "Professionel website til havearbejde og anlæg på Læsø med fokus på lokal troværdighed.",
     link: "https://bjarnefraellegaarden.dk",
+    image: caseBjarne,
   },
 ];
 
@@ -176,18 +178,21 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
       style={{ transformStyle: 'preserve-3d' }}
     >
       <div className="aspect-[4/3] bg-muted flex items-center justify-center relative overflow-hidden">
+        {caseItem.image ? (
+          <img 
+            src={caseItem.image} 
+            alt={caseItem.title} 
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <span className="text-muted-foreground text-sm relative z-10">Case billede</span>
+        )}
         <motion.div 
-          className="absolute inset-0 bg-foreground/10"
-          whileHover={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
+          className="absolute inset-0 bg-foreground/10 group-hover:opacity-0 transition-opacity duration-500"
         />
         <motion.div
-          className="absolute inset-0 bg-gradient-to-br from-transparent to-foreground/5"
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
+          className="absolute inset-0 bg-gradient-to-br from-transparent to-foreground/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
         />
-        <span className="text-muted-foreground text-sm relative z-10">Case billede</span>
       </div>
       <div className="p-8">
         <div className="flex items-start justify-between mb-3">
