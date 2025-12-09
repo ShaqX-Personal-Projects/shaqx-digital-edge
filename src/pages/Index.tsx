@@ -47,22 +47,20 @@ const services = [
 
 const cases = [
   {
-    title: "E-handelsplatform",
-    category: "Webshop",
-    result: "+200%",
-    resultLabel: "online salg",
+    title: "Hair by Gashi",
+    category: "Website",
+    result: "Luksus",
+    resultLabel: "frisøroplevelse",
+    description: "Eksklusiv frisørwebsite i Aalborg med elegant sort/hvid æstetik, bookingsystem og galleri.",
+    link: "https://hairbygashi.dk",
   },
   {
-    title: "SaaS Dashboard",
-    category: "Software",
-    result: "5+",
-    resultLabel: "integrationer",
-  },
-  {
-    title: "Virksomhedswebsite",
-    category: "Website & SEO",
-    result: "Top 3",
-    resultLabel: "på Google",
+    title: "Bjarne Fra Ellegården",
+    category: "Website",
+    result: "Lokal",
+    resultLabel: "tilstedeværelse",
+    description: "Professionel website til havearbejde og anlæg på Læsø med fokus på lokal troværdighed.",
+    link: "https://bjarnefraellegaarden.dk",
   },
 ];
 
@@ -159,8 +157,11 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   
   return (
-    <motion.article
+    <motion.a
       ref={ref}
+      href={caseItem.link}
+      target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 100, rotateX: 15 }}
       animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 100, rotateX: 15 }}
       transition={{ 
@@ -169,8 +170,8 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
         ease: [0.22, 1, 0.36, 1] 
       }}
       whileHover={{ y: -12, transition: { duration: 0.4 } }}
-      className={`group bg-background border border-border hover:border-foreground/30 transition-colors duration-500 cursor-pointer ${
-        index === 0 ? 'lg:translate-y-16' : index === 2 ? 'lg:-translate-y-8' : ''
+      className={`group block bg-background border border-border hover:border-foreground/30 transition-colors duration-500 cursor-pointer ${
+        index === 0 ? 'lg:translate-y-16' : ''
       }`}
       style={{ transformStyle: 'preserve-3d' }}
     >
@@ -189,16 +190,25 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
         <span className="text-muted-foreground text-sm relative z-10">Case billede</span>
       </div>
       <div className="p-8">
-        <motion.span 
-          className="text-xs text-muted-foreground uppercase tracking-wider inline-block"
-          whileHover={{ letterSpacing: '0.2em' }}
-          transition={{ duration: 0.3 }}
-        >
-          {caseItem.category}
-        </motion.span>
-        <h3 className="font-display text-xl font-bold mt-3 mb-6">
+        <div className="flex items-start justify-between mb-3">
+          <motion.span 
+            className="text-xs text-muted-foreground uppercase tracking-wider inline-block"
+            whileHover={{ letterSpacing: '0.2em' }}
+            transition={{ duration: 0.3 }}
+          >
+            {caseItem.category}
+          </motion.span>
+          <ArrowUpRight 
+            size={18} 
+            className="text-muted-foreground group-hover:text-foreground transition-all group-hover:translate-x-1 group-hover:-translate-y-1" 
+          />
+        </div>
+        <h3 className="font-display text-xl font-bold mb-3">
           {caseItem.title}
         </h3>
+        <p className="text-muted-foreground text-sm mb-6">
+          {caseItem.description}
+        </p>
         <div className="flex items-baseline gap-2 overflow-hidden">
           <motion.span 
             className="font-display text-4xl md:text-5xl font-bold"
@@ -213,7 +223,7 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
           </span>
         </div>
       </div>
-    </motion.article>
+    </motion.a>
   );
 };
 
