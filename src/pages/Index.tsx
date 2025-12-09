@@ -6,6 +6,7 @@ import { Layout } from "@/components/Layout";
 import LoadingScreen from "@/components/LoadingScreen";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import caseBjarne from "@/assets/case-bjarne.png";
+import caseGashi from "@/assets/case-gashi.png";
 
 const services = [
   {
@@ -54,6 +55,7 @@ const cases = [
     resultLabel: "frisøroplevelse",
     description: "Eksklusiv frisørwebsite i Aalborg med elegant sort/hvid æstetik, bookingsystem og galleri.",
     link: "https://hairbygashi.dk",
+    image: caseGashi,
   },
   {
     title: "Bjarne Fra Ellegården",
