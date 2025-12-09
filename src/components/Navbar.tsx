@@ -26,7 +26,7 @@ export function Navbar() {
             <img 
               src={logoWhite} 
               alt="ShaqX" 
-              className="h-14 w-auto dark:invert-0 invert"
+              className="h-24 w-auto dark:invert-0 invert"
             />
           </Link>
 
