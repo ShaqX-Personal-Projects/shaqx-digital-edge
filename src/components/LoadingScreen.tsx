@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import logoWhite from "@/assets/logo-white.png";
-import { useTheme } from "@/hooks/use-theme";
+
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -9,8 +9,6 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [phase, setPhase] = useState(0);
-  const { theme } = useTheme();
-  const isLightMode = theme === "light";
 
   useEffect(() => {
     const timers = [
@@ -65,7 +63,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                   initial={{ y: "110%" }}
                   animate={{ 
                     y: phase >= 1 ? "0%" : "110%",
-                    filter: isLightMode ? (phase >= 3 ? "invert(1)" : "invert(0)") : "invert(0)"
+                    filter: phase >= 3 ? "invert(1)" : "invert(0)"
                   }}
                   transition={{
                     y: {
