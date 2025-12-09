@@ -585,7 +585,9 @@ const Index = () => {
         </section>
 
         {/* Values Section */}
-        <section className="bg-foreground text-background">
+        <section className="bg-gradient-to-br from-foreground via-foreground to-foreground/90 text-background relative overflow-hidden">
+          {/* Subtle pattern overlay */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, currentColor 1px, transparent 0)', backgroundSize: '40px 40px' }} />
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left - Statement */}
             <div className="p-8 md:p-12 lg:p-20 flex flex-col justify-center lg:min-h-[60vh] overflow-hidden">
