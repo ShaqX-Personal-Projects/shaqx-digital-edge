@@ -4,6 +4,7 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import logoWhite from "@/assets/logo-white.png";
 
 const navLinks = [
   { name: "Services", href: "/services" },
@@ -21,11 +22,12 @@ export function Navbar() {
       <nav className="container-wide">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link 
-            to="/" 
-            className="font-display text-2xl font-bold tracking-tight"
-          >
-            ShaqX
+          <Link to="/" className="flex items-center">
+            <img 
+              src={logoWhite} 
+              alt="ShaqX" 
+              className="h-8 w-auto dark:invert-0 invert"
+            />
           </Link>
 
           {/* Desktop Navigation */}
