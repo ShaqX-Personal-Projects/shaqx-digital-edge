@@ -56,6 +56,7 @@ const cases = [
     description: "Eksklusiv frisørwebsite i Aalborg med elegant sort/hvid æstetik, bookingsystem og galleri.",
     link: "https://hairbygashi.dk",
     image: caseGashi,
+    isCta: false,
   },
   {
     title: "Bjarne Fra Ellegården",
@@ -65,6 +66,17 @@ const cases = [
     description: "Professionel website til havearbejde og anlæg på Læsø med fokus på lokal troværdighed.",
     link: "https://bjarnefraellegaarden.dk",
     image: caseBjarne,
+    isCta: false,
+  },
+  {
+    title: "Er det din tur?",
+    category: "Dit projekt",
+    result: "Næste",
+    resultLabel: "succeshistorie",
+    description: "Lad os skabe noget stort sammen. Vi er klar til at hjælpe dig med at nå dine digitale mål.",
+    link: "/kontakt",
+    image: undefined,
+    isCta: true,
   },
 ];
 
@@ -159,6 +171,54 @@ const ServiceItem = ({ service, index }: { service: typeof services[0]; index: n
 const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: number }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  // CTA card styling
+  if (caseItem.isCta) {
+    return (
+      <motion.div
+        ref={ref}
+        initial={{ opacity: 0, y: 100, rotateX: 15 }}
+        animate={isInView ? { opacity: 1, y: 0, rotateX: 0 } : { opacity: 0, y: 100, rotateX: 15 }}
+        transition={{ 
+          duration: 0.9, 
+          delay: index * 0.2, 
+          ease: [0.22, 1, 0.36, 1] 
+        }}
+        whileHover={{ y: -12, transition: { duration: 0.4 } }}
+        className="group block bg-foreground text-background border border-foreground cursor-pointer"
+        style={{ transformStyle: 'preserve-3d' }}
+      >
+        <div className="aspect-[4/3] bg-foreground/90 flex items-center justify-center relative overflow-hidden">
+          <motion.span 
+            className="font-display text-6xl md:text-7xl font-bold text-background/20"
+            animate={{ scale: [1, 1.05, 1] }}
+            transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+          >
+            ?
+          </motion.span>
+        </div>
+        <div className="p-8">
+          <div className="flex items-start justify-between mb-3">
+            <span className="text-xs text-background/60 uppercase tracking-wider">
+              {caseItem.category}
+            </span>
+          </div>
+          <h3 className="font-display text-xl font-bold mb-3 text-background">
+            {caseItem.title}
+          </h3>
+          <p className="text-background/70 text-sm mb-6">
+            {caseItem.description}
+          </p>
+          <Link to="/kontakt">
+            <Button variant="outline" className="bg-background text-foreground hover:bg-background/90 border-background">
+              Book et møde
+              <ArrowRight size={16} className="ml-2" />
+            </Button>
+          </Link>
+        </div>
+      </motion.div>
+    );
+  }
   
   return (
     <motion.a
