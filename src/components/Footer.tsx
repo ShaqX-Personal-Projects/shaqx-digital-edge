@@ -79,7 +79,7 @@ export function Footer() {
 
         {/* Bottom Section */}
         <div className="pt-10 border-t border-background/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
-          <img src={logoWhite} alt="ShaqX" className="h-10 w-auto" />
+          <img src={logoWhite} alt="ShaqX" className="h-24 w-auto" />
           <div className="text-sm text-background/60">
             © {new Date().getFullYear()} ShaqX. Alle rettigheder forbeholdes.
           </div>
