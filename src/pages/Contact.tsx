@@ -152,25 +152,36 @@ const Contact = () => {
               <div className="space-y-8">
                 <ContactInfoItem 
                   icon={Mail}
-                  title="E-mail"
-                  content="kontakt@shaqx.dk"
-                  href="mailto:kontakt@shaqx.dk"
+                  title="Salg"
+                  content="sales@shaqx.com"
+                  href="mailto:sales@shaqx.com"
                   index={0}
                 />
                 <ContactInfoItem 
-                  icon={Phone}
-                  title="Telefon"
-                  content="+45 12 34 56 78"
-                  href="tel:+4512345678"
+                  icon={Mail}
+                  title="Support"
+                  content="support@shaqx.com"
+                  href="mailto:support@shaqx.com"
                   index={1}
                 />
                 <ContactInfoItem 
-                  icon={MapPin}
-                  title="Lokation"
-                  content="Danmark"
+                  icon={Mail}
+                  title="Generelt"
+                  content="info@shaqx.com"
+                  href="mailto:info@shaqx.com"
                   index={2}
                 />
               </div>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.8 }}
+                className="mt-12 pt-8 border-t border-border"
+              >
+                <p className="text-sm text-muted-foreground mb-2">Stolt bygget i Danmark</p>
+                <p className="text-sm text-muted-foreground">CVR: 45847136</p>
+              </motion.div>
             </div>
 
             {/* Right Column - Form */}
