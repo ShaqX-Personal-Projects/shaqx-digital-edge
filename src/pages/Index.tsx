@@ -209,9 +209,9 @@ const CaseCard = ({ caseItem, index }: { caseItem: typeof cases[0]; index: numbe
         <p className="text-muted-foreground text-sm mb-6">
           {caseItem.description}
         </p>
-        <div className="flex items-baseline gap-2 overflow-hidden">
+        <div className="flex flex-col gap-1">
           <motion.span 
-            className="font-display text-4xl md:text-5xl font-bold"
+            className="font-display text-3xl md:text-4xl font-bold"
             initial={{ y: 0 }}
             whileHover={{ y: -4 }}
             transition={{ duration: 0.3 }}
