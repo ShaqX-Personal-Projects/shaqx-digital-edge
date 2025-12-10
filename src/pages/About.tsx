@@ -218,8 +218,8 @@ const About = () => {
               <div className="bg-card border border-border p-10 lg:p-12 shadow-2xl">
                 <h3 className="font-display text-xl font-bold mb-6">Bag ShaqX</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6">
-                  ShaqX er grundlagt med en baggrund i softwareudvikling, digital marketing 
-                  og forretningsudvikling. Det er netop kombinationen af teknisk ekspertise 
+                  ShaqX er grundlagt med en baggrund i softwareudvikling, digital strategi 
+                  og forretningsudvikling. Det er netop kombinationen af teknisk ekspertise
                   og kommerciel forståelse der gør os i stand til at levere løsninger, 
                   der ikke bare fungerer teknisk – men som rent faktisk driver vækst.
                 </p>
