@@ -89,7 +89,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
                     ease: [0.33, 1, 0.68, 1],
                   }}
                 >
-                  Digital Bureau
+                  Digital Tech
                 </motion.p>
               </div>
             </div>

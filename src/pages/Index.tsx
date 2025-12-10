@@ -455,7 +455,7 @@ const Index = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.3 }}
                 >
-                  Et skarpt dansk bureau der bygger software, websites og webshops. 
+                  En skarp dansk tech-virksomhed der bygger software, websites og webshops. 
                   Uden bullshit.
                 </motion.p>
                 <motion.div

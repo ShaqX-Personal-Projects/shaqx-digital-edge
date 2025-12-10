@@ -160,7 +160,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg md:text-xl text-muted-foreground max-w-lg"
             >
-              ShaqX er et dansk digitalt bureau med én mission: At hjælpe virksomheder 
+              ShaqX er en dansk tech-virksomhed med én mission: At hjælpe virksomheder 
               med at vokse digitalt – på en måde der rent faktisk giver resultater.
             </motion.p>
           </motion.div>

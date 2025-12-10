@@ -95,7 +95,7 @@ const services = [
     id: "rekruttering",
     icon: Users,
     title: "Rekruttering & Specialist-match",
-    intro: "Vi hjælper dig med at finde de rigtige folk. Ikke som et traditionelt rekrutteringsbureau, men gennem vores netværk af dygtige specialister.",
+    intro: "Vi hjælper dig med at finde de rigtige folk. Ikke som et traditionelt rekrutteringsfirma, men gennem vores netværk af dygtige specialister.",
     whatYouGet: [
       "Adgang til verificerede specialister i vores netværk",
       "Matching baseret på dine specifikke behov",
