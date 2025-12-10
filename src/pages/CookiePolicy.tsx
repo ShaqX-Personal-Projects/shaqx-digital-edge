@@ -82,8 +82,49 @@ export default function CookiePolicy() {
                       <td className="py-3 pr-4">Gemmer dit cookie-samtykke</td>
                       <td className="py-3">1 år</td>
                     </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-3 pr-4">_ga</td>
+                      <td className="py-3 pr-4">Statistik</td>
+                      <td className="py-3 pr-4">Google Analytics - bruges til at skelne mellem brugere</td>
+                      <td className="py-3">2 år</td>
+                    </tr>
+                    <tr className="border-b border-border/50">
+                      <td className="py-3 pr-4">_ga_*</td>
+                      <td className="py-3 pr-4">Statistik</td>
+                      <td className="py-3 pr-4">Google Analytics - bruges til at bevare sessionstilstand</td>
+                      <td className="py-3">2 år</td>
+                    </tr>
                   </tbody>
                 </table>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.25}>
+              <h2 className="font-display text-2xl md:text-3xl font-bold mb-4">Tredjepartstjenester</h2>
+              <div className="space-y-4 text-muted-foreground leading-relaxed">
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2">Google Analytics</h3>
+                  <p>
+                    Vi bruger Google Analytics til at indsamle statistik om, hvordan besøgende bruger vores 
+                    hjemmeside. Dette hjælper os med at forbedre brugeroplevelsen. Google Analytics indsamler 
+                    anonymiserede data om sidevisninger, sessionsvarighed og lignende. Du kan læse mere om 
+                    Googles privatlivspolitik på{" "}
+                    <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:no-underline">
+                      policies.google.com/privacy
+                    </a>
+                  </p>
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground mb-2">Netlify Forms</h3>
+                  <p>
+                    Vores kontaktformular håndteres af Netlify, som er vores hosting-udbyder. Når du indsender 
+                    kontaktformularen, gemmes dine oplysninger sikkert hos Netlify og videresendes til os via 
+                    e-mail. Du kan læse mere om Netlifys privatlivspolitik på{" "}
+                    <a href="https://www.netlify.com/privacy/" target="_blank" rel="noopener noreferrer" className="text-foreground underline hover:no-underline">
+                      netlify.com/privacy
+                    </a>
+                  </p>
+                </div>
               </div>
             </AnimatedSection>
 
