@@ -14,6 +14,9 @@ const footerLinks = {
     { name: "Cases", href: "/cases" },
     { name: "Kontakt", href: "/kontakt" },
   ],
+  legal: [
+    { name: "Cookie Policy", href: "/cookie-policy" },
+  ],
 };
 
 export function Footer() {
@@ -63,6 +66,23 @@ export function Footer() {
               </h3>
               <ul className="space-y-4">
                 {footerLinks.company.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      to={link.href}
+                      className="text-background/80 hover:text-background transition-colors"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-background/60 mb-6">
+                Juridisk
+              </h3>
+              <ul className="space-y-4">
+                {footerLinks.legal.map((link) => (
                   <li key={link.href}>
                     <Link
                       to={link.href}
