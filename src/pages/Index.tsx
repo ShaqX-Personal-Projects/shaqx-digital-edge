@@ -375,32 +375,32 @@ const Index = () => {
           >
             {/* Left side - Main headline */}
             <div className="w-full lg:w-[60%] flex flex-col justify-end p-8 md:p-12 lg:p-20 pb-32">
-              <div className="overflow-hidden">
+              <div className="overflow-visible">
                 <motion.h1
                   initial={{ y: "100%", rotateX: 45 }}
                   animate={{ y: 0, rotateX: 0 }}
                   transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[0.9] text-white"
+                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[1] text-white"
                 >
                   Digitale
                 </motion.h1>
               </div>
-              <div className="overflow-hidden">
+              <div className="overflow-visible">
                 <motion.h1
                   initial={{ y: "100%", rotateX: 45 }}
                   animate={{ y: 0, rotateX: 0 }}
                   transition={{ duration: 1, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[0.9] text-white"
+                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[1] text-white"
                 >
                   løsninger
                 </motion.h1>
               </div>
-              <div className="overflow-hidden mb-8">
+              <div className="overflow-visible mb-8">
                 <motion.h1
                   initial={{ y: "100%", rotateX: 45 }}
                   animate={{ y: 0, rotateX: 0 }}
                   transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[0.9] text-white/40"
+                  className="font-display text-[12vw] sm:text-[10vw] lg:text-[7vw] font-bold leading-[1] text-white/40 pb-2"
                 >
                   der virker
                 </motion.h1>
