@@ -348,10 +348,10 @@ const Index = () => {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
-  // Mobile autoplay fix
+  // Video autoplay - triggers when loading screen disappears
   useEffect(() => {
     const video = videoRef.current;
-    if (!video) return;
+    if (!video || isLoading) return;
 
     const attemptPlay = () => {
       const playPromise = video.play();
@@ -370,7 +370,14 @@ const Index = () => {
     };
 
     attemptPlay();
-  }, []);
+  }, [isLoading]);
+
+  // Handler for when video is ready to play
+  const handleVideoCanPlay = () => {
+    if (!isLoading && videoRef.current) {
+      videoRef.current.play().catch(() => {});
+    }
+  };
 
   return (
     <>
@@ -390,6 +397,8 @@ const Index = () => {
               loop
               playsInline
               preload="auto"
+              onCanPlay={handleVideoCanPlay}
+              onLoadedData={handleVideoCanPlay}
               className="w-full h-full object-cover"
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
