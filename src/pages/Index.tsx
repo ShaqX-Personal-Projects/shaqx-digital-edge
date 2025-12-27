@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -338,6 +338,7 @@ const ValueItem = ({ number, title, description, index }: { number: string; titl
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const heroRef = useRef(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"]
@@ -346,6 +347,30 @@ const Index = () => {
   const heroY = useTransform(scrollYProgress, [0, 1], [0, 200]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  // Mobile autoplay fix
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const attemptPlay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // Autoplay failed, wait for user interaction
+          const handleInteraction = () => {
+            video.play();
+            document.removeEventListener('touchstart', handleInteraction);
+            document.removeEventListener('click', handleInteraction);
+          };
+          document.addEventListener('touchstart', handleInteraction, { once: true });
+          document.addEventListener('click', handleInteraction, { once: true });
+        });
+      }
+    };
+
+    attemptPlay();
+  }, []);
 
   return (
     <>
@@ -359,10 +384,12 @@ const Index = () => {
             style={{ scale: heroScale }}
           >
             <video
+              ref={videoRef}
               autoPlay
               muted
               loop
               playsInline
+              preload="auto"
               className="w-full h-full object-cover"
             >
               <source src="/videos/hero-bg.mp4" type="video/mp4" />
