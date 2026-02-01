@@ -31,7 +31,7 @@ const services = [
     whatYouGet: [
       "Responsivt design der virker på alle enheder",
       "Hurtig loadtid og optimeret performance",
-      "Brugervenlig CMS til nem opdatering",
+      
       "E-commerce med betalingsløsninger",
     ],
     whoItsFor: [
